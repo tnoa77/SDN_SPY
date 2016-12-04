@@ -48,7 +48,7 @@ def send_udp(packet):
 ip_dst = "10.0.0.1"
 mac_dst = "00:00:00:00:00:01"
 
-os.system("tcpdump udp -w ./client.pcap")
+os.system("tcpdump udp -w ./client.pcap&>/dev/null")
 
 print "change dst port"
 pkt = Ether(dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=9250, dport=get_random_port())/get_data()

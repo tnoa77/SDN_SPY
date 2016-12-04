@@ -2,7 +2,7 @@ from scapy.all import *
 
 mac_dst = "00:00:00:00:00:02"
 
-os.system("tcpdump udp -w ./server.pcap")
+os.system("tcpdump udp -w ./server.pcap&>/dev/null")
 
 while True:
     receive = sniff(filter="udp", count=1)
