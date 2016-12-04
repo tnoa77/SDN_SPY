@@ -10,7 +10,19 @@ while True:
         if str(receive[0].load) == "SDN_SPY_exit":
             break
         pkt = receive[0]
-        pkt[Ether].dst = mac_dst
+
+        src_mac = pkt[Ether].src
+        src_ip = pkt[IP].src
+        src_port = pkt[UDP].sport
+
+        pkt[Ether].src = pkt[Ether].dst
+        pkt[IP].src = pkt[IP].dst
+        pkt[UDP].sport = pkt[UDP].dport
+
+        pkt[Ether].dst = src_mac
+        pkt[IP].dst = src_ip
+        pkt[UDP].dport = src_port
+
         sendp(pkt)
 
 os.system("killall tcpdump")
