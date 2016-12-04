@@ -20,10 +20,10 @@ for i in range(0, len(server_pacp)):
         print packet.time
         server_time.append(packet.time)
 
-print "NO.\t\tP1_SEND\t\tP1_RECV\t\tP2_SEND\t\tP2_RECV"
+print "%10s%13s%13s%13s%13s" % ("NO.", "P1_SEND,", "P1_RECV", "P2_SEND", "P2_RECV")
 if len(client_time) == len(server_time):
     for i in range(0, len(client_time), 4):
-        print "D%d\t\t%.2f\t\t%.2f\t\t%.2f\t\t%.2f" % (
+        print "D%9d%10.2f%10.2f%10.2f%10.2f" % (
             (i / 4 + 1), (server_time[i] - client_time[i]) * 100000000,
             (client_time[i + 1] - server_time[i + 1]) * 100000000,
             (server_time[i + 2] - client_time[i + 2]) * 100000000,
