@@ -1,4 +1,5 @@
 from scapy.all import *
+import time
 
 RANDOM_IP_POOL=['0.0.0.0/0']
 
@@ -43,21 +44,31 @@ print "change dst port"
 pkt = Ether(dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=9250, dport=get_random_port())/get_data()
 sendp(pkt)
 
+time.sleep(1)
+
 print "change src port"
 pkt = Ether(dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=get_random_port(), dport=9250)/get_data()
 sendp(pkt)
+
+time.sleep(1)
 
 print "change ToS bits"
 pkt = Ether(dst=mac_dst)/IP(dst=ip_dst, tos=get_random_tos())/UDP(sport=9250, dport=9250)/get_data()
 sendp(pkt)
 
+time.sleep(1)
+
 print "change src IP"
 pkt = Ether(dst=mac_dst)/IP(src=get_random_ip(), dst=ip_dst)/UDP(sport=9250, dport=9250)/get_data()
 sendp(pkt)
 
+time.sleep(1)
+
 print "change dst IP"
 pkt = Ether(dst=mac_dst)/IP(dst=get_random_ip())/UDP(sport=9250, dport=9250)/get_data()
 sendp(pkt)
+
+time.sleep(1)
 
 print "change src MAC"
 pkt = Ether(src=get_random_mac(), dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=9250, dport=9250)/get_data()
