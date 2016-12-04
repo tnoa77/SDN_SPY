@@ -17,7 +17,7 @@ for i in range(0, len(server_pacp)):
     if hasattr(packet, 'load') and str(packet.load).startswith("SDN_SPY_D"):
         server_time.append(packet.time)
 
-print "%10s%15s%15s%15s%15s" % ("NO.", "P1_SEND", "P1_RECV", "P2_SEND", "P2_RECV")
+print "%10s%15s%15s%15s%15s" % ("FIELD", "P1_SEND", "P1_RECV", "P2_SEND", "P2_RECV")
 if len(client_time) == len(server_time):
     for i in range(0, len(client_time), 4):
         print "%10s%15.2f%15.2f%15.2f%15.2f" % (
