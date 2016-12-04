@@ -7,7 +7,7 @@ os.system("tcpdump udp -w ./server.pcap")
 while True:
     receive = sniff(filter="udp", count=1)
     if hasattr(receive[0], 'load') and str(receive[0].load).startswith("SDN_SPY_"):
-        if str(receive[0].load) == "SDN_SPY_exit"
+        if str(receive[0].load) == "SDN_SPY_exit":
             break
         pkt = receive[0]
         pkt[Ether].dst = mac_dst
