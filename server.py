@@ -13,5 +13,5 @@ while True:
         pkt[Ether].dst = mac_dst
         sendp(pkt)
 
-os.system("./kill_process.sh tcpdump")
+os.system("killall tcpdump")
 print "finished"
