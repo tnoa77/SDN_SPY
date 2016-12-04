@@ -1,5 +1,6 @@
 from scapy.all import *
 import time
+import os
 
 RANDOM_IP_POOL=['0.0.0.0/0']
 
@@ -37,39 +38,43 @@ def get_random_mac():
            random.randint(0x00, 0xff)]
     return ':'.join(map(lambda x: "%02x" % x, mac))
 
+
+def send_udp(packet):
+    sendp(packet)
+    time.sleep(1)
+    sendp(packet)
+    time.sleep(1)
+
 ip_dst = "10.0.0.1"
 mac_dst = "00:00:00:00:00:01"
 
+os.system("tcpdump udp -w ./client.pcap")
+
 print "change dst port"
 pkt = Ether(dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=9250, dport=get_random_port())/get_data()
-sendp(pkt)
-
-time.sleep(1)
+send_udp(pkt)
 
 print "change src port"
 pkt = Ether(dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=get_random_port(), dport=9250)/get_data()
-sendp(pkt)
-
-time.sleep(1)
+send_udp(pkt)
 
 print "change ToS bits"
 pkt = Ether(dst=mac_dst)/IP(dst=ip_dst, tos=get_random_tos())/UDP(sport=9250, dport=9250)/get_data()
-sendp(pkt)
-
-time.sleep(1)
+send_udp(pkt)
 
 print "change src IP"
 pkt = Ether(dst=mac_dst)/IP(src=get_random_ip(), dst=ip_dst)/UDP(sport=9250, dport=9250)/get_data()
-sendp(pkt)
-
-time.sleep(1)
+send_udp(pkt)
 
 print "change dst IP"
 pkt = Ether(dst=mac_dst)/IP(dst=get_random_ip())/UDP(sport=9250, dport=9250)/get_data()
-sendp(pkt)
-
-time.sleep(1)
+send_udp(pkt)
 
 print "change src MAC"
 pkt = Ether(src=get_random_mac(), dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=9250, dport=9250)/get_data()
+send_udp(pkt)
+
+pkt = Ether(dst=mac_dst)/IP(dst=ip_dst)/UDP(sport=9250, dport=9250)/"SDN_SPY_exit"
 sendp(pkt)
+
+os.system("./kill_process.sh tcpdump")
