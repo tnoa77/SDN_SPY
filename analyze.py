@@ -14,7 +14,7 @@ for i in range(0, len(client_pacp)):
         client_time = packet.time
 
 for i in range(0, len(server_pacp)):
-    packet = client_pacp[i]
+    packet = server_pacp[i]
     if str(packet.load).startswith("SDN_SPY"):
         print packet.time
         server_time = packet.time
