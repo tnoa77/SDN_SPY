@@ -11,11 +11,11 @@ def get_data(id):
 
 
 def get_random_port():
-    int(random.uniform(10000, 60000))
+    return int(random.uniform(10000, 60000))
 
 
 def get_random_tos():
-    int(random.uniform(0, 8))
+    return int(random.uniform(0, 8))
 
 
 def get_random_ip():
