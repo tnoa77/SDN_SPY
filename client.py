@@ -56,27 +56,27 @@ sendp(pkt)
 time.sleep(1)
 
 print "change dst port"
-pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=get_random_port()) / get_data("P1")
+pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=get_random_port()) / get_data("D1")
 send_udp(pkt)
 
 print "change src port"
-pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=get_random_port(), dport=9250) / get_data("P2")
+pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=get_random_port(), dport=9250) / get_data("D2")
 send_udp(pkt)
 
 print "change ToS bits"
-pkt = Ether(dst=mac_dst) / IP(dst=ip_dst, tos=get_random_tos()) / UDP(sport=9250, dport=9250) / get_data("P3")
+pkt = Ether(dst=mac_dst) / IP(dst=ip_dst, tos=get_random_tos()) / UDP(sport=9250, dport=9250) / get_data("D3")
 send_udp(pkt)
 
 print "change src IP"
-pkt = Ether(dst=mac_dst) / IP(src=get_random_ip(), dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("P4")
+pkt = Ether(dst=mac_dst) / IP(src=get_random_ip(), dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D4")
 send_udp(pkt)
 
 print "change dst IP"
-pkt = Ether(dst=mac_dst) / IP(dst=get_random_ip()) / UDP(sport=9250, dport=9250) / get_data("P5")
+pkt = Ether(dst=mac_dst) / IP(dst=get_random_ip()) / UDP(sport=9250, dport=9250) / get_data("D5")
 send_udp(pkt)
 
 print "change src MAC"
-pkt = Ether(src=get_random_mac(), dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("P6")
+pkt = Ether(src=get_random_mac(), dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D6")
 send_udp(pkt)
 
 pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDN_SPY_exit"
