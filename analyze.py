@@ -24,7 +24,9 @@ print "NO.\tP1_SEND\tP1_RECV\tP2_SEND\tP2_RECV"
 if len(client_time) == len(server_time):
     for i in range(0, len(client_time), 4):
         print "D%f\t%f\t%f\t%f\t%f" % (
-            (i / 4 + 1), (server_time[i] - client_time[i]), (server_time[i + 1] - client_time[i + 1]),
-            (server_time[i + 2] - client_time[i + 2]), (server_time[i + 3] - client_time[i + 3]))
+            (i / 4 + 1), (server_time[i] - client_time[i]) * 100000000,
+            (server_time[i + 1] - client_time[i + 1]) * 100000000,
+            (server_time[i + 2] - client_time[i + 2]) * 100000000,
+            (server_time[i + 3] - client_time[i + 3]) * 100000000)
 else:
     print "data mismatch"
