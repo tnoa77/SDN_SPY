@@ -53,6 +53,7 @@ os.system("tcpdump -t udp -w ./client.pcap&>/dev/null")
 
 pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDN_SPY_start"
 sendp(pkt)
+time.sleep(1)
 
 print "change dst port"
 pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=get_random_port()) / get_data("P1")
