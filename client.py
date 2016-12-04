@@ -5,15 +5,15 @@ RANDOM_IP_POOL=['0.0.0.0/0']
 
 def get_data():
     data_prefix = "SDN_SPY_"
-    return data_prefix + str(random.uniform(100000, 999999))
+    return data_prefix + str(int(random.uniform(100000, 999999)))
 
 
 def get_random_port():
-    random.uniform(10000, 60000)
+    int(random.uniform(10000, 60000))
 
 
 def get_random_tos():
-    random.uniform(0, 8)
+    int(random.uniform(0, 8))
 
 
 def get_random_ip():
