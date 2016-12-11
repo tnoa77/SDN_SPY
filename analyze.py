@@ -29,7 +29,7 @@ def calc_time_diff(group, direction=1):
         else:
             return (client_time[group] - server_time[group]) * 100000000
     else:
-        return "NaN"
+        return 0
 
 
 for i in range(0, len(client_pacp)):
