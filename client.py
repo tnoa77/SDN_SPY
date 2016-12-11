@@ -80,7 +80,7 @@ send_udp(pkt)
 # send_udp(pkt)
 
 print "change src MAC"
-pkt = Ether(src=get_random_mac(), dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D6")
+pkt = Ether(src=get_random_mac(), dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D5")
 send_udp(pkt)
 
 pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDNSPY_exit"
