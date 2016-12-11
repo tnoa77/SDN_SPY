@@ -76,7 +76,7 @@ pkt = Ether(src=mac_src, dst=mac_dst) / IP(src=ip_src, dst=ip_dst, tos=get_rando
 send_udp(pkt)
 
 print "change src IP"
-pkt = Ether(src=mac_src, dst=mac_dst) / IP(src=ip_src, src=get_random_ip(), dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D4")
+pkt = Ether(src=mac_src, dst=mac_dst) / IP(src=get_random_ip(), dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D4")
 send_udp(pkt)
 
 # print "change dst IP"
