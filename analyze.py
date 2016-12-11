@@ -18,6 +18,8 @@ def analyze_data(data):
         direction = rel[2]
         no = rel[3]
         return group, direction, no
+    else:
+        return "null", "null", "null"
 
 
 def calc_time_diff(group, direction=1):
