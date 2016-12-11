@@ -86,3 +86,4 @@ pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDN_S
 sendp(pkt)
 
 os.system("killall tcpdump")
+
