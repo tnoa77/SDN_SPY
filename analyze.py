@@ -15,9 +15,9 @@ def analyze_data(data):
     rel = data.split("_")
     if len(rel) == 4:
         group = rel[1]
-        type = rel[2]
+        direction = rel[2]
         no = rel[3]
-        return group, type, no
+        return group, direction, no
 
 
 def calc_time_diff(group, direction=1):
@@ -33,14 +33,14 @@ def calc_time_diff(group, direction=1):
 for i in range(0, len(client_pacp)):
     packet = client_pacp[i]
     if hasattr(packet, 'load') and str(packet.load).startswith("SDNSPY_D"):
-        group, type, no = analyze_data(packet.load)
+        group, direction, no = analyze_data(packet.load)
         tags.append(group)
         client_time[group + "_" + type + "_" + no] = packet.time
 
 for i in range(0, len(server_pacp)):
     packet = server_pacp[i]
     if hasattr(packet, 'load') and str(packet.load).startswith("SDNSPY_D"):
-        group, type, no = analyze_data(packet.load)
+        group, direction, no = analyze_data(packet.load)
         tags.append(group)
         client_time[group + "_" + type + "_" + no] = packet.time
 
