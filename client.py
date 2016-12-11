@@ -6,8 +6,7 @@ RANDOM_IP_POOL = ['0.0.0.0/0']
 
 
 def get_data(id):
-    data_prefix = "SDN_SPY_" + id + "_"
-    return data_prefix + str(int(random.uniform(100000, 999999)))
+    return "SDN_SPY_" + id + "_"
 
 
 def get_random_port():
@@ -40,8 +39,10 @@ def get_random_mac():
 
 
 def send_udp(packet):
+    packet.load += "SEND_1"
     sendp(packet)
     time.sleep(1)
+    packet.load += "SEND_2"
     sendp(packet)
     time.sleep(1)
 
@@ -73,9 +74,9 @@ print "change src IP"
 pkt = Ether(dst=mac_dst) / IP(src=get_random_ip(), dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D4")
 send_udp(pkt)
 
-print "change dst IP"
-pkt = Ether(dst=mac_dst) / IP(dst=get_random_ip()) / UDP(sport=9250, dport=9250) / get_data("D5")
-send_udp(pkt)
+# print "change dst IP"
+# pkt = Ether(dst=mac_dst) / IP(dst=get_random_ip()) / UDP(sport=9250, dport=9250) / get_data("D5")
+# send_udp(pkt)
 
 print "change src MAC"
 pkt = Ether(src=get_random_mac(), dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D6")

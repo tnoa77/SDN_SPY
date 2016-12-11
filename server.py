@@ -2,7 +2,6 @@ from scapy.all import *
 
 mac_dst = "00:00:00:00:00:02"
 
-
 os.system("iptables -A INPUT -p udp --dport 10000:60000 -j DROP")
 os.system("iptables -A INPUT -p udp --dport 9250 -j DROP")
 os.system("tcpdump -t udp -w ./server.pcap&>/dev/null")
@@ -25,6 +24,8 @@ while True:
         pkt[Ether].dst = src_mac
         pkt[IP].dst = src_ip
         pkt[UDP].dport = src_port
+
+        pkt.load = pkt.load.replace("_SEND_", "_RECV_")
 
         sendp(pkt)
 
