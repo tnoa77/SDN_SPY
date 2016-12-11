@@ -18,8 +18,6 @@ def analyze_data(data):
         direction = rel[2]
         no = rel[3]
         return group, direction, no
-    else:
-        print "xxxxxxxxxxxxxxxxxxxxxxxx"
 
 
 def calc_time_diff(group, direction=1):
@@ -29,7 +27,7 @@ def calc_time_diff(group, direction=1):
         else:
             return (client_time[group] - server_time[group]) * 100000000
     else:
-        return 0
+        return -1
 
 
 for i in range(0, len(client_pacp)):
