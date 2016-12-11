@@ -2,6 +2,9 @@ from scapy.all import *
 
 mac_dst = "00:00:00:00:00:02"
 
+
+os.system("iptables -A INPUT -p udp --dport 10000:60000 -j DROP")
+os.system("iptables -A INPUT -p udp --dport 9250 -j DROP")
 os.system("tcpdump -t udp -w ./server.pcap&>/dev/null")
 
 while True:
