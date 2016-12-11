@@ -8,8 +8,8 @@ os.system("tcpdump -t udp -w ./server.pcap&>/dev/null")
 
 while True:
     receive = sniff(filter="udp", count=1)
-    if hasattr(receive[0], 'load') and str(receive[0].load).startswith("SDN_SPY_"):
-        if str(receive[0].load) == "SDN_SPY_exit":
+    if hasattr(receive[0], 'load') and str(receive[0].load).startswith("SDNSPY_"):
+        if str(receive[0].load) == "SDNSPY_exit":
             break
         pkt = receive[0]
 

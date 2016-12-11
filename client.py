@@ -6,7 +6,7 @@ RANDOM_IP_POOL = ['0.0.0.0/0']
 
 
 def get_data(id):
-    return "SDN_SPY_" + id + "_"
+    return "SDNSPY_" + id + "_"
 
 
 def get_random_port():
@@ -54,7 +54,7 @@ os.system("iptables -A INPUT -p udp --dport 10000:60000 -j DROP")
 os.system("iptables -A INPUT -p udp --dport 9250 -j DROP")
 os.system("tcpdump -t udp -w ./client.pcap&>/dev/null")
 
-pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDN_SPY_start"
+pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDNSPY_start"
 sendp(pkt)
 time.sleep(1)
 
@@ -82,7 +82,7 @@ print "change src MAC"
 pkt = Ether(src=get_random_mac(), dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / get_data("D6")
 send_udp(pkt)
 
-pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDN_SPY_exit"
+pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDNSPY_exit"
 sendp(pkt)
 
 os.system("killall tcpdump")
