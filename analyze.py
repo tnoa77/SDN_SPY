@@ -44,6 +44,7 @@ for i in range(0, len(server_pacp)):
         tags.append(group)
         client_time[group + "_" + type + "_" + no] = packet.time
 
+
 print "%10s%15s%15s%15s%15s" % ("FIELD", "P1_SEND", "P1_RECV", "P2_SEND", "P2_RECV")
 for group in tags:
     print "%10s%15.2f%15.2f%15.2f%15.2f" % (
