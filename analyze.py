@@ -35,14 +35,14 @@ for i in range(0, len(client_pacp)):
     if hasattr(packet, 'load') and str(packet.load).startswith("SDNSPY_D"):
         group, direction, no = analyze_data(packet.load)
         tags.append(group)
-        client_time[group + "_" + type + "_" + no] = packet.time
+        client_time[group + "_" + direction + "_" + no] = packet.time
 
 for i in range(0, len(server_pacp)):
     packet = server_pacp[i]
     if hasattr(packet, 'load') and str(packet.load).startswith("SDNSPY_D"):
         group, direction, no = analyze_data(packet.load)
         tags.append(group)
-        client_time[group + "_" + type + "_" + no] = packet.time
+        client_time[group + "_" + direction + "_" + no] = packet.time
 
 print "%10s%15s%15s%15s%15s" % ("FIELD", "P1_SEND", "P1_RECV", "P2_SEND", "P2_RECV")
 for group in tags:
