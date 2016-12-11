@@ -39,10 +39,11 @@ def get_random_mac():
 
 
 def send_udp(packet):
-    packet.load += "SEND_1"
+    data = packet.load
+    packet.load = data + "SEND_1"
     sendp(packet)
     time.sleep(1)
-    packet.load += "SEND_2"
+    packet.load = data + "SEND_2"
     sendp(packet)
     time.sleep(1)
 
@@ -86,4 +87,3 @@ pkt = Ether(dst=mac_dst) / IP(dst=ip_dst) / UDP(sport=9250, dport=9250) / "SDNSP
 sendp(pkt)
 
 os.system("killall tcpdump")
-
