@@ -51,6 +51,7 @@ def send_udp(packet):
 ip_dst = "10.0.0.1"
 mac_dst = "00:00:00:00:00:01"
 
+os.system("iptables -F")
 os.system("iptables -A INPUT -p udp --dport 10000:60000 -j DROP")
 os.system("iptables -A INPUT -p udp --dport 9250 -j DROP")
 os.system("tcpdump -t udp -w ./client.pcap&>/dev/null")

@@ -46,7 +46,7 @@ for i in range(0, len(server_pacp)):
         group, direction, no = analyze_data(packet.load)
         if group not in tags:
             tags.append(group)
-            server_time[group + "_" + direction + "_" + no] = packet.time
+        server_time[group + "_" + direction + "_" + no] = packet.time
 
 print "%10s%15s%15s%15s%15s" % ("FIELD", "P1_SEND", "P1_RECV", "P2_SEND", "P2_RECV")
 for group in tags:
